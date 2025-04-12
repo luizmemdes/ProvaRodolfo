@@ -4,20 +4,31 @@ public partial class ObsControls : ContentView
 {
     public event EventHandler<string> OnError;
     public event EventHandler<EventArgs> OnSave;
-    public ObsControls()
-	{
-		InitializeComponent();
-	}
 
-    public string Obs { get { return obsName.Text; } set { obsName.Text = value; } }
+    public ObsControls()
+    {
+        InitializeComponent();
+    }
+
+    public string Nome => nomeEntry.Text;
+    public string Endereco => enderecoEntry.Text;
+    public string Obs
+    {
+        get => obsName.Text;
+        set => obsName.Text = value;
+    }
 
     private void btnSave_Clicked(object sender, EventArgs e)
     {
-         if (obsValidator.IsNotValid)
+        if (string.IsNullOrWhiteSpace(Nome) ||
+            string.IsNullOrWhiteSpace(Endereco) ||
+            string.IsNullOrWhiteSpace(Obs))
         {
-            OnError?.Invoke(sender, "Uma observação é obrigatória");
+            OnError?.Invoke(this, "Todos os campos são obrigatórios.");
             return;
         }
-        OnSave?.Invoke(sender, e);
+
+        obsValidator.IsVisible = false;
+        OnSave?.Invoke(this, EventArgs.Empty);
     }
 }

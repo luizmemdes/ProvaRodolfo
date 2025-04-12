@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MinhaAgenda.Views.Controls.ObsControls"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
->
-    
-    <Frame Padding="10,2,10,2">
-        <HorizontalStackLayout Spacing="5">
-            <Label Text="Obs " VerticalOptions="Center" WidthRequest="60"></Label>
-            <Entry x:Name="obsName" Placeholder="Obs" VerticalOptions="Center">
-                <Entry.Behaviors>
-                    <toolkit:TextValidationBehavior 
-                           x:Name="obsValidator"
-                           Flags="ValidateOnAttaching,ValidateOnValueChanged"
-                           MinimumLength="3"
-                       />
-                </Entry.Behaviors>
-            </Entry>
-            <Frame>
-                <Button x:Name="btnSave" Text="Salvar" Clicked="btnSave_Clicked"></Button>
-            </Frame>
-        </HorizontalStackLayout>
-    </Frame>
+             x:Class="MinhaAgenda.Views.Controls.ObsControls">
+
+    <VerticalStackLayout Padding="20" Spacing="10">
+
+        <Label Text="Nome" />
+        <Entry x:Name="nomeEntry" Placeholder="Digite o nome" />
+
+        <Label Text="Endereço" />
+        <Entry x:Name="enderecoEntry" Placeholder="Digite o endereço" />
+
+        <Label Text="Observação" />
+        <Entry x:Name="obsName" Placeholder="Digite a observação" />
+
+        
+        <Label x:Name="obsValidator" IsVisible="False" Text="Observação é obrigatória" TextColor="Red" />
+
+        <Button x:Name="btnSave" Text="Salvar" Clicked="btnSave_Clicked"
+                BackgroundColor="#5A32CC" TextColor="White" CornerRadius="10"/>
+
+    </VerticalStackLayout>
 </ContentView>
